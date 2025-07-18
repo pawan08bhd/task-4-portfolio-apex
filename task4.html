@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawan Raghuwanshi - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        main {
+            padding-top: 80px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .hero-detail {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #667eea;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .education-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .education-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-left: 2rem;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 1.5rem;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .education-item h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .year {
+            color: #666;
+            font-style: italic;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .project-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .project-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .activity-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                padding: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                margin: 1rem 0;
+            }
+
+            .education-timeline {
+                padding-left: 1rem;
+            }
+
+            .education-item {
+                margin-left: 1rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Pawan Raghuwanshi</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Pawan Raghuwanshi</h1>
+                <p>Electrical Engineering Student | Problem Solver | Tech Enthusiast</p>
+                <div class="hero-details">
+                    <div class="hero-detail">
+                        <strong>Department:</strong> Electrical Engineering
+                    </div>
+                    <div class="hero-detail">
+                        <strong>Year:</strong> UG - II year
+                    </div>
+                    <div class="hero-detail">
+                        <strong>Institution:</strong> SGSITS, Indore
+                    </div>
+                </div>
+                <a href="#contact" class="cta-button">Get In Touch</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="fade-in">About Me</h2>
+                <div class="fade-in">
+                    <p style="text-align: center; font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+                        I'm a passionate Electrical Engineering student at SGSITS, Indore, with a strong foundation in programming and web technologies. Currently pursuing my undergraduate degree with a CGPA of 7.55, I'm dedicated to learning and applying innovative solutions to real-world problems. My experience includes event coordination, volunteering, and creating responsive web applications.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="fade-in">Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category fade-in">
+                        <h3>Programming</h3>
+                        <p>C, C++<br>Problem Solving Approach</p>
+                    </div>
+                    <div class="skill-category fade-in">
+                        <h3>Web Development</h3>
+                        <p>HTML, CSS, JavaScript<br>Responsive Design</p>
+                    </div>
+                    <div class="skill-category fade-in">
+                        <h3>Software Tools</h3>
+                        <p>Visual Studio<br>Windows OS</p>
+                    </div>
+                    <div class="skill-category fade-in">
+                        <h3>Core Engineering</h3>
+                        <p>Electrical Machines<br>Network Theory<br>Electromagnetic Forces</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="fade-in">Education</h2>
+                <div class="education-timeline">
+                    <div class="education-item fade-in">
+                        <h3>Bachelor of Technology - Electrical Engineering</h3>
+                        <p><strong>Shri G.S. Institute of Technology and Science, Indore</strong></p>
+                        <p>Rajiv Gandhi Proudyogiki Vishwavidyalaya, Bhopal</p>
+                        <p>CGPA: 7.55</p>
+                        <p class="year">Expected Graduation: 2027</p>
+                    </div>
+                    <div class="education-item fade-in">
+                        <h3>Higher Secondary Education (12th)</h3>
+                        <p><strong>Maa Kamla Vidya Vihar H.S. School, Indore</strong></p>
+                        <p>Madhya Pradesh Board of Secondary Education</p>
+                        <p>Percentage: 88%</p>
+                        <p class="year">Year of Passing: 2021</p>
+                    </div>
+                    <div class="education-item fade-in">
+                        <h3>Secondary Education (10th)</h3>
+                        <p><strong>Akanksha Public Higher Secondary School, Guna</strong></p>
+                        <p>Madhya Pradesh Board of Secondary Education</p>
+                        <p class="year">Year of Passing: 2019</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="fade-in">Projects</h2>
+                <div class="project-card fade-in">
+                    <h3>Responsive Portfolio Website</h3>
+                    <p class="project-date">May 2025 - June 2025</p>
+                    <p>A personal portfolio website built using HTML, CSS, and JavaScript showcasing projects, skills, and contact information. The website is designed with responsiveness in mind, ensuring optimal viewing experience across desktop, tablet, and mobile screens.</p>
+                    <ul style="margin-top: 1rem; padding-left: 2rem;">
+                        <li>Responsive design for all device types</li>
+                        <li>Clean and modern user interface</li>
+                        <li>Interactive elements and smooth animations</li>
+                        <li>Cross-browser compatibility</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities" class="section">
+            <div class="container">
+                <h2 class="fade-in">Activities & Leadership</h2>
+                <div class="activities-grid">
+                    <div class="activity-card fade-in">
+                        <h3>Event Coordinator</h3>
+                        <p><strong>Induction Program 2024 - SGSITS</strong></p>
+                        <p>August 11-14, 2024</p>
+                        <p>Managed activities during the event, learning to handle crowds under pressure and improving management skills.</p>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <h3>Volunteer</h3>
+                        <p><strong>AAYAM - Annual Cultural Fest</strong></p>
+                        <p>February 23-26, 2024</p>
+                        <p>Managed various fun and art activities, raised funds by encouraging participation in cultural events.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="fade-in">Contact Information</h2>
+                <div class="contact-info">
+                    <div class="contact-item fade-in">
+                        <h3>📧 Email</h3>
+                        <p>pawanraghuwanshi16@gmail.com</p>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <h3>📱 Phone</h3>
+                        <p>+91 6263215572</p>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <h3>🎓 Enrollment</h3>
+                        <p>0801CE231065</p>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <h3>🎂 Date of Birth</h3>
+                        <p>08/07/2003</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pawan Raghuwanshi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add active class to navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
